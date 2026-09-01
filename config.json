@@ -1,0 +1,15 @@
+{
+    "api_key": "test_api_key_abc123",
+    "client_id": "TESTUSER123",
+    "password": "0000",
+    "totp_secret": "",
+    "ce_token": "SENSEX_CE_TOKEN_HERE",
+    "pe_token": "SENSEX_PE_TOKEN_HERE",
+    "telegram_token": "",
+    "telegram_chat_id": "",
+    "total_capital": 50000,
+    "risk_percent": 2.0,
+    "max_daily_loss_pct": 5.0,
+    "lot_size": 10,
+    "max_trades_per_day": 5
+}
