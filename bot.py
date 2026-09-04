@@ -73,6 +73,8 @@ class BulletproofMasterLiquidityBot:
     self.manual_ce_token = config.get("ce_token", "SENSEX_CE_TOKEN_HERE")
     self.manual_pe_token = config.get("pe_token", "SENSEX_PE_TOKEN_HERE")
 
+    self.stop_requested = False
+
     self.init_database()
 
   def send_telegram_alert(self, message):
@@ -140,6 +142,9 @@ class BulletproofMasterLiquidityBot:
   def connect_broker(self):
     """ब्रोकर से कनेक्ट करने का मेथड (ऑटो-रीकनेक्ट और Retry Logic के साथ)"""
     for attempt in range(5):
+      if self.stop_requested:
+        logging.info("लॉगिन रद्द किया गया (Stop Requested)")
+        return False
       try:
         self.obj = SmartConnect(api_key=self.api_key)
         totp = pyotp.TOTP(self.totp_secret).now()
@@ -562,6 +567,9 @@ class BulletproofMasterLiquidityBot:
       return
 
     while True:
+      if self.stop_requested:
+        logging.info("🛑 बॉट को उपयोगकर्ता द्वारा सफलतापूर्वक रोक दिया गया है।")
+        break
       try:
         ce_token, pe_token = self.get_dynamic_expiry_tokens(exchange)
 
