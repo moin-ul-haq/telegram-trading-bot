@@ -1,7 +1,7 @@
 {
-    "api_key": "test_api_key_abc123",
-    "client_id": "TESTUSER123",
-    "password": "0000",
+    "api_key": "",
+    "client_id": "",
+    "password": "",
     "totp_secret": "",
     "ce_token": "SENSEX_CE_TOKEN_HERE",
     "pe_token": "SENSEX_PE_TOKEN_HERE",
